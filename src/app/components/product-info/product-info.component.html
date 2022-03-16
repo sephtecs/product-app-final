@@ -1,0 +1,12 @@
+<h1>Displaying Product Summary</h1>
+
+<table border=1px cellspacing="10" cellpadding="10" style="border-collapse:collapse">
+    <tr>
+        <th>Product Name</th>
+        <th>Price</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{product.productName}}</td>
+        <td>{{product.price}}</td>
+    </tr>
+</table>

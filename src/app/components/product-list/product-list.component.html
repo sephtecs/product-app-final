@@ -1,0 +1,65 @@
+<h1>All the products</h1>
+<div [ngStyle]="{'background-color':'green'}">My Product app</div>
+
+<div [ngSwitch]="color">
+    <p *ngSwitchCase="'red'">You have selected red </p>
+    <p *ngSwitchCase="'green'">You have selected green </p>
+    <p *ngSwitchCase="'blue'">You have selected blue </p>
+    <p *ngSwitchCase="'yellow'">You have selected yellow </p>
+</div>
+
+<!-- <ul>
+    <li *ngFor="let p of products">{{p.productId}} - {{p.productName}} - {{p.quantityOnHand}} - {{p.price}}</li>
+</ul> -->
+
+<table border=1px cellspacing="10" cellpadding="10" style="border-collapse:collapse">
+    <tr>
+        <th>Product Id</th>
+        <th>Product Name</th>
+        <th>Quantity On Hand</th>
+        <th>Price</th>
+        <th>In stock?</th>
+    </tr>
+    <tr *ngFor="let product of products">
+        <td>{{product.productId}}</td>
+        <td>{{product.productName}}</td>
+        <td>{{product.quantityOnHand}}</td>
+        <td>{{product.price}}</td>
+        <td *ngIf="productAvailable">Stocks Available</td> <!-- use ngIf for conditional boolean-->
+    </tr>
+</table>
+<hr />
+<table border=1px cellspacing="10" cellpadding="10" style="border-collapse:collapse">
+    <tr>
+        <th>Name</th>
+        <th>Country</th>
+    </tr>
+    <tr *ngFor="let p of people" [ngStyle]="{'color':getColor(p.country)}">
+        <td>{{p.name}}</td>
+        <td>{{p.country}}</td>
+    </tr>
+</table>
+<hr />
+
+<input type="text" [(ngModel)]="guestName">
+<h1>Welcome {{ guestName }}</h1>
+
+<hr />
+<h1>Post Lunch Exercise: Doctor's Visit</h1>
+<table border=1px cellspacing="10" cellpadding="10" style="border-collapse:collapse">
+    <tr>
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>Symptom</th>
+        <th>Total Bill</th>
+        <th>Doctor Attended</th>
+    </tr>
+    <tr *ngFor="let p of patients" [ngStyle]="{'color':getColor2(p.patientSymptom)}">
+        <td>{{p.patientId}}</td>
+        <td>{{p.patientName}}</td>
+        <td>{{p.patientSymptom}}</td>
+        <td>{{p.patientTotalBill}}</td>
+        <td>{{p.patientDoctorName}}</td>
+    </tr>
+</table>
+<hr />
