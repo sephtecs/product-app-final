@@ -1,0 +1,15 @@
+<p>Template Driven Forms</p>
+<form #userForm="ngForm" (ngSubmit)="displayUserDetails(userForm.value)">
+    <div class="form-group">
+        <label>
+            User Id:
+        </label>
+        <input type="text" class="form-control" name="userId" [(ngModel)]="userId">
+
+        <label>
+            User name:
+        </label>
+        <input type="text" class="form-control" name="userName" [(ngModel)]="userName">
+        <input type="submit">
+    </div>
+</form>

@@ -1,0 +1,21 @@
+<form novalidate [formGroup]="productForm">
+    <fieldset>
+        <div class="form-group">
+            <label>ProductId</label>
+            <input type="text" class="form-control" formControlName="productId">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('productId').hasError('required') && productForm.get('productId').touched">
+            Please enter product id:</div>
+        <input type="submit">
+
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" formControlName="productName">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('productName').hasError('required') && productForm.get('productName').touched">
+            Please enter product name:</div>
+        <input type="submit">
+    </fieldset>
+</form>

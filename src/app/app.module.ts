@@ -1,5 +1,5 @@
 import { NgModule } from '@angular/core';
-import { FormsModule } from '@angular/forms';
+import { FormsModule, ReactiveFormsModule } from '@angular/forms';
 import { BrowserModule } from '@angular/platform-browser';
 
 import { AppRoutingModule } from './app-routing.module';
@@ -13,6 +13,9 @@ import { PatientService } from './services/patient.service';
 import { PatientComponent } from './components/patient/patient.component';
 import { ContactusComponent } from './components/contactus/contactus.component';
 import { AboutusComponent } from './components/aboutus/aboutus.component';
+import { UserComponent } from './components/user/user.component';
+import { ProductAddComponent } from './components/product-add/product-add.component';
+import { ProductCreateComponent } from './components/product-create/product-create.component';
 
 @NgModule({
   declarations: [
@@ -21,13 +24,17 @@ import { AboutusComponent } from './components/aboutus/aboutus.component';
     ProductInfoComponent,
     PatientComponent,
     ContactusComponent,
-    AboutusComponent
+    AboutusComponent,
+    UserComponent,
+    ProductAddComponent,
+    ProductCreateComponent
   ],
   imports: [
     BrowserModule,
     AppRoutingModule,
     FormsModule,
-    HttpClientModule
+    HttpClientModule,
+    ReactiveFormsModule
   ],
   providers: [ProductService, PatientService, OutdatedproductsService],
   bootstrap: [AppComponent]

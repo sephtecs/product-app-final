@@ -15,6 +15,7 @@ export class ProductListComponent implements OnInit {
   patients: Patient[] = [];
   public productAvailable = true;
   public color = "blue";
+  public errorMessage!: string;
   productData = new ProductData();
 
   public guestName: string = "Isha";
@@ -24,7 +25,7 @@ export class ProductListComponent implements OnInit {
     // this.products = productService.getProducts();
     this.productService.getProducts().subscribe((data: any) => {
       this.products = data;
-    })
+    }, err => this.errorMessage = err)
   }
 
   // constructor() {

@@ -1,6 +1,6 @@
 import { HttpClient, HttpHeaders } from '@angular/common/http';
 import { Injectable } from '@angular/core';
-import { Observable } from 'rxjs';
+import { Observable, throwError, catchError, retry } from 'rxjs';
 import { Product } from '../models/product';
 
 const productURL = "http://localhost:3000/product"
@@ -20,26 +20,63 @@ export class ProductService {
 
   //Getting all the products
   getProducts(): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(productURL);
+    return this.httpClient.get<Product[]>(productURL)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   //Getting a single product
   getProduct(productId: number): Observable<Product[]> {
-    return this.httpClient.get<Product[]>(`${productURL}/${productId}`);
+    return this.httpClient.get<Product[]>(`${productURL}/${productId}`)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   //Deleting a single product
   deleteProduct(productId: number): Observable<Product[]> {
-    return this.httpClient.delete<Product[]>(`${productURL}/${productId}`);
+    return this.httpClient.delete<Product[]>(`${productURL}/${productId}`)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   //Saving a single product
   saveProduct(product: Product): Observable<Product[]> {
-    return this.httpClient.post<Product[]>(productURL, product, this.httpOptions);
+    return this.httpClient.post<Product[]>(productURL, product, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
 
   //Edit/Update a single product
   updateProduct(productId: number, product: Product): Observable<Product> {
-    return this.httpClient.put<Product>(`${productURL}/${productId}`, product, this.httpOptions);
+    return this.httpClient.put<Product>(`${productURL}/${productId}`, product, this.httpOptions)
+      .pipe(
+        retry(1),
+        catchError(this.errorHandler)
+      );
   }
+
+  //Error Handler
+  errorHandler(error: { error: { message: string; }; status: any; message: any; }) {
+    let errorMessage = '';
+    if (error.error instanceof ErrorEvent) {
+      // Get client-side error
+      errorMessage = error.error.message;
+    } else {
+      // Get server-side error
+      errorMessage = `REVError Code: ${error.status}\nMessage: ${error.message}`;
+    }
+    console.log(errorMessage);
+    return throwError(errorMessage);
+  }
+
+
+
 }
