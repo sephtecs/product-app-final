@@ -1,0 +1,16 @@
+<table border=1px cellspacing="10" cellpadding="10" style="border-collapse:collapse">
+    <tr>
+        <th>Patient Id</th>
+        <th>Patient Name</th>
+        <th>Symptom</th>
+        <th>Total Bill</th>
+        <th>Doctor Attended</th>
+    </tr>
+    <tr *ngFor="let p of patients">
+        <td>{{p.patientId}}</td>
+        <td>{{p.patientName}}</td>
+        <td>{{p.patientSymptom}}</td>
+        <td>{{p.patientTotalBill}}</td>
+        <td>{{p.patientDoctorName}}</td>
+    </tr>
+</table>

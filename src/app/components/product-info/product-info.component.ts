@@ -1,6 +1,8 @@
 import { Component, OnInit } from '@angular/core';
 import { Product } from 'src/app/models/product';
 import { ProductData } from 'src/app/ProductData';
+import { OutdatedproductsService } from 'src/app/services/outdatedproducts.service';
+import { ProductService } from 'src/app/services/product.service';
 
 @Component({
   selector: 'app-product-info',
@@ -11,10 +13,17 @@ export class ProductInfoComponent implements OnInit {
 
   products: Product[] = [];
   productData = new ProductData();
-  constructor() { }
+
+  constructor(public productService: ProductService,
+    public outdatedService: OutdatedproductsService) { }
 
   ngOnInit(): void {
-    this.products = this.productData.getProducts();
+    this.productService.getProducts().subscribe((data: any) => {
+      this.products = data;
+    })
+
+    // this.products = this.outdatedService.getOutdatedProducts();
+    // this.products = this.productData.getProducts();
     // { 'productId': 1001, productName: 'Lakme', quantityOnHand: 200, price: 99 },
     // { 'productId': 1002, productName: 'Aroma', quantityOnHand: 382, price: 89 },
     // { 'productId': 1003, productName: 'Pendrive', quantityOnHand: 191, price: 199 },
