@@ -1,0 +1,70 @@
+<h1>Patient Add</h1>
+<font color="green">
+    <h2>{{successMessage}}</h2>
+</font>
+
+<form novalidate [formGroup]="patientForm" (ngSubmit)="displayPatientInfo()">
+
+    <fieldset>
+
+        <!-- Product Id -->
+        <div class="form-group">
+            <label>PatientId</label>
+            <input type="text" class="form-control" formControlName="patientId">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientId').hasError('required') && patientForm.get('patientId').dirty">
+            Please enter patient id:</div>
+
+        <!-- Patient Name -->
+        <div class="form-group">
+            <label>Patient Name</label>
+            <input type="text" class="form-control" formControlName="patientName">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientName').hasError('required') && patientForm.get('patientName').dirty">
+            Please enter patient name:</div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientName').hasError('minlength') && patientForm.get('patientName').dirty">
+            Please enter 5 characters.</div>
+
+        <!-- Patient Symptom -->
+        <div class="form-group">
+            <label>Patient Symptom</label>
+            <input type="text" class="form-control" formControlName="patientSymptom">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientSymptom').hasError('required') && patientForm.get('patientSymptom').dirty">
+            Please enter patient symptom:</div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientSymptom').hasError('minlength') && patientForm.get('patientSymptom').dirty">
+            Please enter 5 characters.</div>
+
+        <!-- Patient Total Bill-->
+        <div class="form-group">
+            <label>Total Bill</label>
+            <input type="text" class="form-control" formControlName="patientTotalBill">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientTotalBill').hasError('required') && patientForm.get('patientTotalBill').dirty">
+            Please enter quantity on hand:</div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientTotalBill').hasError('min') && patientForm.get('patientTotalBill').dirty">
+            Please enter an appropriate amount</div>
+
+        <!-- Patient Doctor Name -->
+        <div class="form-group">
+            <label>Patient Doctor Name</label>
+            <input type="text" class="form-control" formControlName="patientDoctorName">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientDoctorName').hasError('required') && patientForm.get('patientDoctorName').dirty">
+            Please enter patient symptom:</div>
+        <div class="alert alert-danger"
+            *ngIf="patientForm.get('patientDoctorName').hasError('minlength') && patientForm.get('patientDoctorName').dirty">
+            Please enter 5 characters.</div>
+
+        <input type="submit" [disabled]="patientForm.invalid" class="btn btn-success">
+    </fieldset>
+
+</form>

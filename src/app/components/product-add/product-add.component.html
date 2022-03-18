@@ -1,1 +1,55 @@
-<p>product-add works!</p>
+<h1>Product Add</h1>
+<font color="green">
+    <h2>{{successMessage}}</h2>
+</font>
+<form novalidate [formGroup]="productForm" (ngSubmit)="displayProductInfo()">
+    <fieldset>
+
+        <!-- Product Id -->
+        <div class="form-group">
+            <label>ProductId</label>
+            <input type="text" class="form-control" formControlName="productId">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('productId').hasError('required') && productForm.get('productId').dirty">
+            Please enter product id:</div>
+
+        <!-- Product Name -->
+        <div class="form-group">
+            <label>Product Name</label>
+            <input type="text" class="form-control" formControlName="productName">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('productName').hasError('required') && productForm.get('productName').dirty">
+            Please enter product name:</div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('productName').hasError('minlength') && productForm.get('productName').dirty">
+            Please enter 5 characters</div>
+
+        <!-- Quantity On Hand -->
+        <div class="form-group">
+            <label>Quantity On Hand</label>
+            <input type="text" class="form-control" formControlName="quantityOnHand">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('quantityOnHand').hasError('required') && productForm.get('quantityOnHand').dirty">
+            Please enter quantity on hand:</div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('quantityOnHand').hasError('min') && productForm.get('quantityOnHand').dirty">
+            Please enter an appropriate amount</div>
+
+        <!-- Price -->
+        <div class="form-group">
+            <label>Price</label>
+            <input type="text" class="form-control" formControlName="price">
+        </div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('price').hasError('required') && productForm.get('price').dirty">
+            Please enter the product price:</div>
+        <div class="alert alert-danger"
+            *ngIf="productForm.get('price').hasError('min') && productForm.get('price').dirty">
+            Please enter a positive value</div>
+
+        <input type="submit" [disabled]="productForm.invalid" class="btn btn-success">
+    </fieldset>
+</form>

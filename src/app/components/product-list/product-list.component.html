@@ -1,5 +1,4 @@
 <h1>All the products</h1>
-<div [ngStyle]="{'background-color':'green'}">My Product app</div>
 
 <div [ngSwitch]="color">
     <p *ngSwitchCase="'red'">You have selected red </p>
@@ -7,6 +6,8 @@
     <p *ngSwitchCase="'blue'">You have selected blue </p>
     <p *ngSwitchCase="'yellow'">You have selected yellow </p>
 </div>
+<hr />
+<div [ngStyle]="{'background-color':'green'}">My Product app</div>
 
 <!-- <ul>
     <li *ngFor="let p of products">{{p.productId}} - {{p.productName}} - {{p.quantityOnHand}} - {{p.price}}</li>
@@ -23,6 +24,7 @@
         <th>Quantity On Hand</th>
         <th>Price</th>
         <th>In stock?</th>
+        <th>Delete</th>
     </tr>
     <tr *ngFor="let product of products">
         <td>{{product.productId}}</td>
@@ -30,6 +32,7 @@
         <td>{{product.quantityOnHand}}</td>
         <td>{{product.price}}</td>
         <td *ngIf="productAvailable">Stocks Available</td> <!-- use ngIf for conditional boolean-->
+        <td><button class="btn btn-danger" (click)="removeProduct(product.productId)">Delete</button></td>
     </tr>
 </table>
 <hr />
