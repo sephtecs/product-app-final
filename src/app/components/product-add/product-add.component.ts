@@ -29,8 +29,8 @@ export class ProductAddComponent implements OnInit {
     this.productService.saveProduct(this.productForm.value).subscribe((data: any) => {
       this.successMessage = 'Product with product id ' + this.productForm.value.productId + ' saved successfully';
       //redirect to productlist component
-      this.router.navigate(['productList']);
-    })
+
+    }, err => this.router.navigate(['productList']))
   }
 
 }
